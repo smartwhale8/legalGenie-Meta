@@ -15,7 +15,9 @@ const Upload = () => {
     formData.append('audio', file);
 
     try {
-      const response = await axios.post('http://localhost:3000/api/upload', formData);
+      // Use the environment variable for the API URL
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/upload`, formData);
       setTranscription(response.data.transcription);
     } catch (error) {
       console.error('Upload failed:', error);
